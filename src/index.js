@@ -108,3 +108,44 @@ let city = "Edmonton";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 axios.get(apiUrl).then(initialTemperature);
 console.log(apiUrl);
+
+//Search Bar Functionality
+function searchBar(event) {
+  function showTemp(response) {
+    console.log(response);
+    let searchLocationTemp = Math.round(response.data.main.temp);
+    let searchLocationHigh = Math.round(response.data.main.temp_max);
+    let searchLocationLow = Math.round(response.data.main.temp_min);
+    //let currentLocationPrecipitation = Math.round(response.data.precipitation.value);
+    let searchLocationHumidity = Math.round(response.data.main.humidity);
+    let searchLocationWind = Math.round(response.data.wind.speed);
+    let searchCity = response.data.name;
+    let searchCountry = response.data.sys.country;
+    let searchCondition = response.data.weather[0].description;
+    let h1 = document.querySelector("h1");
+    h1.innerHTML = `${searchCity}, ${searchCountry}`;
+    nowTemp.innerHTML = `${searchLocationTemp}°C`;
+    nowHigh.innerHTML = `H: ${searchLocationHigh}°C`;
+    nowLow.innerHTML = `L: ${searchLocationLow}°C`;
+    //nowPrecipitation = `${currentLocationPrecipitation}%`;
+    nowHumidity.innerHTML = `${searchLocationHumidity}%`;
+    nowWind.innerHTML = `${searchLocationWind} km/h`;
+    nowCondition.innerHTML = searchCondition;
+  }
+  event.preventDefault();
+  let searchInput = document.querySelector("#city-search");
+  let searchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=${units}`;
+  let h1 = document.querySelector("h1");
+  console.log(searchInput);
+  axios.get(searchUrl).then(showTemp);
+
+  if (searchInput.value) {
+    h1.innerHTML = searchInput.value;
+  } else {
+    h1.innerHTML = null;
+    alert("Please enter a city.");
+  }
+  console.log(apiUrl);
+}
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", searchBar);
