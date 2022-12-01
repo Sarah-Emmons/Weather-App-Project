@@ -22,6 +22,7 @@
       <br />
       <div class="today-info">
         <div class="row">
+          <!--Row 1 Start-->
           <div class="col-5" id="weather-condition"></div>
           <div class="col-2" id="high-low">
             <span class="todayHigh" id="today-high"></span>
@@ -30,7 +31,9 @@
           </div>
           <div class="col-5" id="weather-time"></div>
         </div>
+        <!--Row 1 End-->
         <br />
+        <!--Row 2 Start-->
         <div class="row">
           <div class="col-2"></div>
           <div class="col-2"><!--INSERT IMAGE--></div>
@@ -46,10 +49,131 @@
           </div>
           <div class="col-1"></div>
         </div>
+        <!--Row 2 End-->
         <h2 id="today-day"></h2>
       </div>
       <br />
+      <div class="coming">
+        <!--Row 1 start-->
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-2">
+            <div class="card" style="width: 100%">
+              <div class="card-body-1">
+                <h5 class="card-title-1" id="day-one-temp-high"></h5>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  id="day-one-temp-low"
+                ></h6>
+              </div>
+            </div>
+            <div class="day1"></div>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-2">
+            <div class="card" style="width: 100%">
+              <div class="card-body-2">
+                <h5 class="card-title-2" id="day-two-temp-high"></h5>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  id="day-two-temp-low"
+                ></h6>
+              </div>
+            </div>
+            <div class="day2"></div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+        <!--Row 1 end-->
+        <br />
+        <!--Row 2 start-->
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-2">
+            <div class="card" style="width: 100%">
+              <div class="card-body-3">
+                <h5 class="card-title-3" id="day-three-high-temp"></h5>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  id="day-three-temp-low"
+                ></h6>
+              </div>
+            </div>
+            <div class="day3"></div>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-2">
+            <div class="card" style="width: 100%">
+              <div class="card-body-4">
+                <h5 class="card-title-4" id="day-four-high-temp"></h5>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  id="day-four-temp-low"
+                ></h6>
+              </div>
+            </div>
+            <div class="day4"></div>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-2">
+            <div class="card" style="width: 100%">
+              <div class="card-body-5">
+                <h5 class="card-title-5" id="day-five-high-temp"></h5>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  id="day-five-temp-low"
+                ></h6>
+              </div>
+            </div>
+            <div class="day5"></div>
+          </div>
+          <div class="col-1"></div>
+        </div>
+        <!--Row 2 end-->
+        <h2>Upcoming Forecast</h2>
+      </div>
+      <br />
+      <!--Search Section Starts-->
+      <div class="searchBar">
+        <div class="row">
+          <div class="col-2">
+            <button type="button" class="btn btn-success" id="celcius">
+              °C
+            </button>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-6">
+            <form id="search-form">
+              <input
+                type="text"
+                placeholder="Please Enter a City..."
+                autofocus
+                id="city-search"
+              />
+            </form>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-2">
+            <button type="button" class="btn btn-danger" id="fahrenheit">
+              °F
+            </button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" id="current-city">
+          Current Location
+        </button>
+      </div>
+      <!--Search Section Ends-->
+      <br />
     </div>
+    <br />
+    <p id="footer">
+      <a href=""> Open Source Coded </a>
+      by
+      <a href="https://www.shecodes.io/graduates/57389-sarah-emmons">
+        Sarah Emmons
+      </a>
+    </p>
+    <script src="src/index.js"></script>
   </body>
-  <script src="src/index.js"></script>
 </html>
