@@ -16,6 +16,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1 class="city-header"></h1>
+      <br />
+      <div class="today-info">
+        <div class="row">
+          <div class="col-5" id="weather-condition"></div>
+          <div class="col-2" id="high-low">
+            <span class="todayHigh" id="today-high"></span>
+            <br />
+            <span class="" todayLow id="today-low"></span>
+          </div>
+          <div class="col-5" id="weather-time"></div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-2"><!--INSERT IMAGE--></div>
+          <div class="col-1"></div>
+          <div class="col-2" id="today-temp"></div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <u>Humidity</u>: <span id="humidity"></span>
+            <br />
+            <u>Precipitation</u>: <span id="precipitation"></span>
+            <br />
+            <u>Wind</u>: <span id="wind"></span>
+          </div>
+          <div class="col-1"></div>
+        </div>
+        <h2 id="today-day"></h2>
+      </div>
+      <br />
+    </div>
+  </body>
   <script src="src/index.js"></script>
 </html>
