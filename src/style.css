@@ -68,19 +68,19 @@ input {
   padding: 2px;
 }
 .card-body-1 {
-  background-image: url();
+  background-image: url(images/blank.png);
 }
 .card-body-2 {
-  background-image: url();
+  background-image: url(images/blank.png);
 }
 .card-body-3 {
-  background-image: url();
+  background-image: url(images/blank.png);
 }
 .card-body-4 {
-  background-image: url();
+  background-image: url(images/blank.png);
 }
 .card-body-5 {
-  background-image: url();
+  background-image: url(images/blank.png);
 }
 .day1,
 .day2,
@@ -91,4 +91,29 @@ input {
   border-radius: 5px;
   background: #000000;
   color: #ffffff;
+}
+#weather-time,
+#weather-condition,
+#today-temp {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 500;
+}
+#today-temp,
+#high-low {
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
+  margin: 5px 0;
+  background: #d2d2d2;
+}
+#current-city {
+  padding: 5;
+  margin: 0 auto;
+  font-weight: 900;
+}
+#weather-condition {
+  text-transform: capitalize;
+}
+#footer {
+  text-align: center;
 }
