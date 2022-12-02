@@ -84,7 +84,7 @@ function initialTemperature(response) {
   let initialIconElement = response.data.weather[0].icon;
   let initialIcon = `http://openweathermap.org/img/wn/${initialIconElement}@2x.png`;
 
-  celciusTemperature = Math.round(response.data.main.temp);
+  celciusTemp = Math.round(response.data.main.temp);
   celciusHigh = Math.round(response.data.main.temp_max);
   celciusLow = Math.round(response.data.main.temp_min);
 
@@ -135,7 +135,7 @@ function searchBar(event) {
     let searchIconElement = response.data.weather[0].icon;
     let searchIcon = `http://openweathermap.org/img/wn/${searchIconElement}@2x.png`;
 
-    celciusTemperature = Math.round(response.data.main.temp);
+    celciusTemp = Math.round(response.data.main.temp);
     celciusHigh = Math.round(response.data.main.temp_max);
     celciusLow = Math.round(response.data.main.temp_min);
 
@@ -167,7 +167,7 @@ function searchBar(event) {
   let searchInput = document.querySelector("#city-search");
   let searchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=${units}`;
   let h1 = document.querySelector("h1");
-  console.log(searchInput);
+  //console.log(searchInput);
   axios.get(searchUrl).then(showTemp);
 
   if (searchInput.value) {
@@ -176,7 +176,7 @@ function searchBar(event) {
     h1.innerHTML = null;
     alert("Please enter a city.");
   }
-  console.log(apiUrl);
+  //console.log(apiUrl);
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchBar);
@@ -208,7 +208,7 @@ function cityClick() {
     let currentIcon = `http://openweathermap.org/img/wn/${currentIconElement}@2x.png`;
     nowIcon.setAttribute("src", currentIcon);
 
-    celciusTemperature = Math.round(response.data.main.temp);
+    celciusTemp = Math.round(response.data.main.temp);
     celciusHigh = Math.round(response.data.main.temp_max);
     celciusLow = Math.round(response.data.main.temp_min);
 
@@ -237,21 +237,27 @@ function cityClick() {
 let currentCityButton = document.querySelector("#current-city");
 currentCityButton.addEventListener("click", cityClick);
 
-//fahrenheit button functionality
+//fahrenheit and celcius button functionality
 
-let celciusTemperature = null;
+let celciusTemp = null;
 let celciusHigh = null;
 let celciusLow = null;
 
 function fahrenheitConversion() {
-  let fahrenheitTemp = Math.round(celciusTemperature * (9 / 5) + 32);
+  let fahrenheitTemp = Math.round(celciusTemp * (9 / 5) + 32);
   let fahrenheitHigh = Math.round(celciusHigh * (9 / 5) + 32);
   let fahrenheithLow = Math.round(celciusLow * (9 / 5) + 32);
-  console.log(fahrenheitTemp);
+  //console.log(fahrenheitTemp);
   nowTemp.innerHTML = `${fahrenheitTemp}°F`;
   nowHigh.innerHTML = `H: ${fahrenheitHigh}°F`;
   nowLow.innerHTML = `L: ${fahrenheithLow}°F`;
 }
 
-//celciusButton.addEventListener("click", celciusConversion());
+function celciusConversion() {
+  nowTemp.innerHTML = `${celciusTemp}°C`;
+  nowHigh.innerHTML = `H: ${celciusHigh}°C`;
+  nowLow.innerHTML = `L: ${celciusLow}°C`;
+}
+
+celciusButton.addEventListener("click", celciusConversion);
 fahrenheitButton.addEventListener("click", fahrenheitConversion);
