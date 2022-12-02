@@ -87,6 +87,7 @@ function initialTemperature(response) {
   celciusTemp = Math.round(response.data.main.temp);
   celciusHigh = Math.round(response.data.main.temp_max);
   celciusLow = Math.round(response.data.main.temp_min);
+  metricWind = Math.round(response.data.wind.speed);
 
   let hours = initialTimestamp.getHours();
   let minutes = ("0" + initialTimestamp.getMinutes()).slice(-2);
@@ -138,6 +139,7 @@ function searchBar(event) {
     celciusTemp = Math.round(response.data.main.temp);
     celciusHigh = Math.round(response.data.main.temp_max);
     celciusLow = Math.round(response.data.main.temp_min);
+    metricWind = Math.round(response.data.wind.speed);
 
     let hours = nowTimestamp.getHours();
     let minutes = ("0" + nowTimestamp.getMinutes()).slice(-2);
@@ -211,6 +213,7 @@ function cityClick() {
     celciusTemp = Math.round(response.data.main.temp);
     celciusHigh = Math.round(response.data.main.temp_max);
     celciusLow = Math.round(response.data.main.temp_min);
+    metricWind = Math.round(response.data.wind.speed);
 
     let hours = currentTimestamp.getHours();
     let minutes = ("0" + currentTimestamp.getMinutes()).slice(-2);
@@ -242,21 +245,25 @@ currentCityButton.addEventListener("click", cityClick);
 let celciusTemp = null;
 let celciusHigh = null;
 let celciusLow = null;
+let metricWind = null;
 
 function fahrenheitConversion() {
   let fahrenheitTemp = Math.round(celciusTemp * (9 / 5) + 32);
   let fahrenheitHigh = Math.round(celciusHigh * (9 / 5) + 32);
   let fahrenheithLow = Math.round(celciusLow * (9 / 5) + 32);
+  let imperialWind = Math.round(metricWind / 1.609);
   //console.log(fahrenheitTemp);
   nowTemp.innerHTML = `${fahrenheitTemp}°F`;
   nowHigh.innerHTML = `H: ${fahrenheitHigh}°F`;
   nowLow.innerHTML = `L: ${fahrenheithLow}°F`;
+  nowWind.innerHTML = `${imperialWind} mph`;
 }
 
 function celciusConversion() {
   nowTemp.innerHTML = `${celciusTemp}°C`;
   nowHigh.innerHTML = `H: ${celciusHigh}°C`;
   nowLow.innerHTML = `L: ${celciusLow}°C`;
+  nowWind.innerHTML = `${metricWind} km/h`;
 }
 
 celciusButton.addEventListener("click", celciusConversion);
