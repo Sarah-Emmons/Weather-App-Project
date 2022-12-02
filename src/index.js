@@ -66,6 +66,7 @@ let dayFiveHigh = document.querySelector("#day-five-temp-high");
 let dayFiveLow = document.querySelector("#day-five-temp-low");
 let celciusButton = document.querySelector("#celcius");
 let fahrenheitButton = document.querySelector("#fahrenheit");
+let nowIcon = document.querySelector("#current-icon");
 
 //initial page load
 function initialTemperature(response) {
@@ -80,6 +81,8 @@ function initialTemperature(response) {
   let initialWind = Math.round(response.data.wind.speed);
   let initialHumidity = response.data.main.humidity;
   let initialTimestamp = new Date(response.data.dt * 1000);
+  let initialIconElement = response.data.weather[0].icon;
+  let initialIcon = `http://openweathermap.org/img/wn/${initialIconElement}@2x.png`;
 
   let hours = initialTimestamp.getHours();
   let minutes = ("0" + initialTimestamp.getMinutes()).slice(-2);
@@ -96,11 +99,12 @@ function initialTemperature(response) {
 
   h1.innerHTML = `${city}, ${country}`;
   nowTemp.innerHTML = `${initalTemp}°C`;
-  nowHigh.innerHTML = `${initialHigh}°C`;
-  nowLow.innerHTML = `${initialLow}°C`;
+  nowHigh.innerHTML = `H: ${initialHigh}°C`;
+  nowLow.innerHTML = `L: ${initialLow}°C`;
   nowCondition.innerHTML = initialCondition;
   nowWind.innerHTML = `${initialWind} km/h`;
   nowHumidity.innerHTML = `${initialHumidity}%`;
+  nowIcon.setAttribute("src", initialIcon);
 }
 
 let apiKey = "7583101ef9342f2512018b4f45d651e6";
@@ -124,6 +128,8 @@ function searchBar(event) {
     let searchCountry = response.data.sys.country;
     let searchCondition = response.data.weather[0].description;
     let nowTimestamp = new Date(response.data.dt * 1000);
+    let searchIconElement = response.data.weather[0].icon;
+    let searchIcon = `http://openweathermap.org/img/wn/${searchIconElement}@2x.png`;
 
     let hours = nowTimestamp.getHours();
     let minutes = ("0" + nowTimestamp.getMinutes()).slice(-2);
@@ -147,6 +153,7 @@ function searchBar(event) {
     nowHumidity.innerHTML = `${searchLocationHumidity}%`;
     nowWind.innerHTML = `${searchLocationWind} km/h`;
     nowCondition.innerHTML = searchCondition;
+    nowIcon.setAttribute("src", searchIcon);
   }
   event.preventDefault();
   let searchInput = document.querySelector("#city-search");
@@ -189,6 +196,9 @@ function cityClick() {
     nowWind.innerHTML = `${currentLocationWind} km/h`;
     nowCondition.innerHTML = currentCondition;
     let currentTimestamp = new Date(response.data.dt * 1000);
+    let currentIconElement = response.data.weather[0].icon;
+    let currentIcon = `http://openweathermap.org/img/wn/${currentIconElement}@2x.png`;
+    nowIcon.setAttribute("src", currentIcon);
 
     let hours = currentTimestamp.getHours();
     let minutes = ("0" + currentTimestamp.getMinutes()).slice(-2);
