@@ -117,3 +117,6 @@ input {
 #footer {
   text-align: center;
 }
+#last-update {
+  opacity: 50%;
+}
