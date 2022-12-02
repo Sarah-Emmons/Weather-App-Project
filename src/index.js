@@ -1,7 +1,5 @@
 //time and days
 let now = new Date();
-let hours = now.getHours();
-let minutes = ("0" + now.getMinutes()).slice(-2);
 let days = [
   "Sunday",
   "Monday",
@@ -33,17 +31,6 @@ if (fourFromNow === undefined) {
 }
 if (fiveFromNow === undefined) {
   fiveFromNow = days[now.getDay() + 5 - 7];
-}
-
-if (hours > 12) {
-  hours = hours - 12;
-  todayTime.innerHTML = `${hours}:${minutes}pm`;
-} else {
-  if (hours === 12) {
-    todayTime.innerHTML = `${hours}:${minutes}pm`;
-  } else {
-    todayTime.innerHTML = `${hours}:${minutes}am`;
-  }
 }
 
 let todayDay = document.querySelector("#today-day");
@@ -92,6 +79,20 @@ function initialTemperature(response) {
   let initialCondition = response.data.weather[0].description;
   let initialWind = Math.round(response.data.wind.speed);
   let initialHumidity = response.data.main.humidity;
+  let initialTimestamp = new Date(response.data.dt * 1000);
+
+  let hours = initialTimestamp.getHours();
+  let minutes = ("0" + initialTimestamp.getMinutes()).slice(-2);
+  if (hours > 12) {
+    hours = hours - 12;
+    todayTime.innerHTML = `${hours}:${minutes} pm`;
+  } else {
+    if (hours === 12) {
+      todayTime.innerHTML = `${hours}:${minutes} pm`;
+    } else {
+      todayTime.innerHTML = `${hours}:${minutes} am`;
+    }
+  }
 
   h1.innerHTML = `${city}, ${country}`;
   nowTemp.innerHTML = `${initalTemp}°C`;
@@ -122,6 +123,21 @@ function searchBar(event) {
     let searchCity = response.data.name;
     let searchCountry = response.data.sys.country;
     let searchCondition = response.data.weather[0].description;
+    let nowTimestamp = new Date(response.data.dt * 1000);
+
+    let hours = nowTimestamp.getHours();
+    let minutes = ("0" + nowTimestamp.getMinutes()).slice(-2);
+    if (hours > 12) {
+      hours = hours - 12;
+      todayTime.innerHTML = `${hours}:${minutes} pm`;
+    } else {
+      if (hours === 12) {
+        todayTime.innerHTML = `${hours}:${minutes} pm`;
+      } else {
+        todayTime.innerHTML = `${hours}:${minutes} am`;
+      }
+    }
+
     let h1 = document.querySelector("h1");
     h1.innerHTML = `${searchCity}, ${searchCountry}`;
     nowTemp.innerHTML = `${searchLocationTemp}°C`;
@@ -172,6 +188,20 @@ function cityClick() {
     nowHumidity.innerHTML = `${currentLocationHumidity}%`;
     nowWind.innerHTML = `${currentLocationWind} km/h`;
     nowCondition.innerHTML = currentCondition;
+    let currentTimestamp = new Date(response.data.dt * 1000);
+
+    let hours = currentTimestamp.getHours();
+    let minutes = ("0" + currentTimestamp.getMinutes()).slice(-2);
+    if (hours > 12) {
+      hours = hours - 12;
+      todayTime.innerHTML = `${hours}:${minutes} pm`;
+    } else {
+      if (hours === 12) {
+        todayTime.innerHTML = `${hours}:${minutes} pm`;
+      } else {
+        todayTime.innerHTML = `${hours}:${minutes} am`;
+      }
+    }
   }
 
   function showPosition(position) {
