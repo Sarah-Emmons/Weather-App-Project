@@ -84,6 +84,10 @@ function initialTemperature(response) {
   let initialIconElement = response.data.weather[0].icon;
   let initialIcon = `http://openweathermap.org/img/wn/${initialIconElement}@2x.png`;
 
+  celciusTemperature = Math.round(response.data.main.temp);
+  celciusHigh = Math.round(response.data.main.temp_max);
+  celciusLow = Math.round(response.data.main.temp_min);
+
   let hours = initialTimestamp.getHours();
   let minutes = ("0" + initialTimestamp.getMinutes()).slice(-2);
   if (hours > 12) {
@@ -130,6 +134,10 @@ function searchBar(event) {
     let nowTimestamp = new Date(response.data.dt * 1000);
     let searchIconElement = response.data.weather[0].icon;
     let searchIcon = `http://openweathermap.org/img/wn/${searchIconElement}@2x.png`;
+
+    celciusTemperature = Math.round(response.data.main.temp);
+    celciusHigh = Math.round(response.data.main.temp_max);
+    celciusLow = Math.round(response.data.main.temp_min);
 
     let hours = nowTimestamp.getHours();
     let minutes = ("0" + nowTimestamp.getMinutes()).slice(-2);
@@ -200,6 +208,10 @@ function cityClick() {
     let currentIcon = `http://openweathermap.org/img/wn/${currentIconElement}@2x.png`;
     nowIcon.setAttribute("src", currentIcon);
 
+    celciusTemperature = Math.round(response.data.main.temp);
+    celciusHigh = Math.round(response.data.main.temp_max);
+    celciusLow = Math.round(response.data.main.temp_min);
+
     let hours = currentTimestamp.getHours();
     let minutes = ("0" + currentTimestamp.getMinutes()).slice(-2);
     if (hours > 12) {
@@ -224,3 +236,22 @@ function cityClick() {
 }
 let currentCityButton = document.querySelector("#current-city");
 currentCityButton.addEventListener("click", cityClick);
+
+//fahrenheit button functionality
+
+let celciusTemperature = null;
+let celciusHigh = null;
+let celciusLow = null;
+
+function fahrenheitConversion() {
+  let fahrenheitTemp = Math.round(celciusTemperature * (9 / 5) + 32);
+  let fahrenheitHigh = Math.round(celciusHigh * (9 / 5) + 32);
+  let fahrenheithLow = Math.round(celciusLow * (9 / 5) + 32);
+  console.log(fahrenheitTemp);
+  nowTemp.innerHTML = `${fahrenheitTemp}°F`;
+  nowHigh.innerHTML = `H: ${fahrenheitHigh}°F`;
+  nowLow.innerHTML = `L: ${fahrenheithLow}°F`;
+}
+
+//celciusButton.addEventListener("click", celciusConversion());
+fahrenheitButton.addEventListener("click", fahrenheitConversion);
