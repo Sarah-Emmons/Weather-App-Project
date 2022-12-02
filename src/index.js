@@ -69,7 +69,7 @@ let fahrenheitButton = document.querySelector("#fahrenheit");
 
 //initial page load
 function initialTemperature(response) {
-  console.log(response);
+  //console.log(response);
   let city = response.data.name;
   let country = response.data.sys.country;
   let h1 = document.querySelector(".city-header");
@@ -108,12 +108,12 @@ let units = "metric";
 let city = "Edmonton";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 axios.get(apiUrl).then(initialTemperature);
-console.log(apiUrl);
+//console.log(apiUrl);
 
 //Search Bar Functionality
 function searchBar(event) {
   function showTemp(response) {
-    console.log(response);
+    //console.log(response);
     let searchLocationTemp = Math.round(response.data.main.temp);
     let searchLocationHigh = Math.round(response.data.main.temp_max);
     let searchLocationLow = Math.round(response.data.main.temp_min);
