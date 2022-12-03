@@ -146,6 +146,19 @@ function initialForecast(response) {
   let d6Low = Math.round(response.data.daily[6].temperature.minimum);
   let d6Icon = response.data.daily[6].condition.icon_url;
 
+  celciusD1High = d1High;
+  celciusD2High = d2High;
+  celciusD3High = d3High;
+  celciusD4High = d4High;
+  celciusD5High = d5High;
+  celciusD6High = d6High;
+  celciusD1Low = d1Low;
+  celciusD2Low = d2Low;
+  celciusD3Low = d3Low;
+  celciusD4Low = d4Low;
+  celciusD5Low = d5Low;
+  celciusD6Low = d6Low;
+
   dayOneHigh.innerHTML = `${d1High}°C`;
   dayOneLow.innerHTML = `${d1Low}°C`;
   dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
@@ -243,6 +256,19 @@ function searchBar(event) {
     let d6High = Math.round(response.data.daily[6].temperature.maximum);
     let d6Low = Math.round(response.data.daily[6].temperature.minimum);
     let d6Icon = response.data.daily[6].condition.icon_url;
+
+    celciusD1High = d1High;
+    celciusD2High = d2High;
+    celciusD3High = d3High;
+    celciusD4High = d4High;
+    celciusD5High = d5High;
+    celciusD6High = d6High;
+    celciusD1Low = d1Low;
+    celciusD2Low = d2Low;
+    celciusD3Low = d3Low;
+    celciusD4Low = d4Low;
+    celciusD5Low = d5Low;
+    celciusD6Low = d6Low;
 
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
@@ -351,6 +377,19 @@ function cityClick() {
     let d6Low = Math.round(response.data.daily[6].temperature.minimum);
     let d6Icon = response.data.daily[6].condition.icon_url;
 
+    celciusD1High = d1High;
+    celciusD2High = d2High;
+    celciusD3High = d3High;
+    celciusD4High = d4High;
+    celciusD5High = d5High;
+    celciusD6High = d6High;
+    celciusD1Low = d1Low;
+    celciusD2Low = d2Low;
+    celciusD3Low = d3Low;
+    celciusD4Low = d4Low;
+    celciusD5Low = d5Low;
+    celciusD6Low = d6Low;
+
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
     dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
@@ -390,17 +429,53 @@ let celciusTemp = null;
 let celciusHigh = null;
 let celciusLow = null;
 let metricWind = null;
+let celciusD1High = null;
+let celciusD2High = null;
+let celciusD3High = null;
+let celciusD4High = null;
+let celciusD5High = null;
+let celciusD6High = null;
+let celciusD1Low = null;
+let celciusD2Low = null;
+let celciusD3Low = null;
+let celciusD4Low = null;
+let celciusD5Low = null;
+let celciusD6Low = null;
 
 function fahrenheitConversion() {
   let fahrenheitTemp = Math.round(celciusTemp * (9 / 5) + 32);
   let fahrenheitHigh = Math.round(celciusHigh * (9 / 5) + 32);
   let fahrenheithLow = Math.round(celciusLow * (9 / 5) + 32);
   let imperialWind = Math.round(metricWind / 1.609);
+  let fahrD1High = Math.round(celciusD1High * (9 / 5) + 32);
+  let fahrD2High = Math.round(celciusD2High * (9 / 5) + 32);
+  let fahrD3High = Math.round(celciusD3High * (9 / 5) + 32);
+  let fahrD4High = Math.round(celciusD4High * (9 / 5) + 32);
+  let fahrD5High = Math.round(celciusD5High * (9 / 5) + 32);
+  let fahrD6High = Math.round(celciusD6High * (9 / 5) + 32);
+  let fahrD1Low = Math.round(celciusD1Low * (9 / 5) + 32);
+  let fahrD2Low = Math.round(celciusD2Low * (9 / 5) + 32);
+  let fahrD3Low = Math.round(celciusD3Low * (9 / 5) + 32);
+  let fahrD4Low = Math.round(celciusD4Low * (9 / 5) + 32);
+  let fahrD5Low = Math.round(celciusD5Low * (9 / 5) + 32);
+  let fahrD6Low = Math.round(celciusD6Low * (9 / 5) + 32);
   //console.log(fahrenheitTemp);
   nowTemp.innerHTML = `${fahrenheitTemp}°F`;
   nowHigh.innerHTML = `H: ${fahrenheitHigh}°F`;
   nowLow.innerHTML = `L: ${fahrenheithLow}°F`;
   nowWind.innerHTML = `${imperialWind} mph`;
+  dayOneHigh.innerHTML = `${fahrD1High}°F`;
+  dayOneLow.innerHTML = `${fahrD1Low}°F`;
+  dayTwoHigh.innerHTML = `${fahrD2High}°F`;
+  dayTwoLow.innerHTML = `${fahrD2Low}°F`;
+  dayThreeHigh.innerHTML = `${fahrD3High}°F`;
+  dayThreeLow.innerHTML = `${fahrD3Low}°F`;
+  dayFourHigh.innerHTML = `${fahrD4High}°F`;
+  dayFourLow.innerHTML = `${fahrD4Low}°F`;
+  dayFiveHigh.innerHTML = `${fahrD5High}°F`;
+  dayFiveLow.innerHTML = `${fahrD5Low}°F`;
+  daySixHigh.innerHTML = `${fahrD6High}°F`;
+  daySixLow.innerHTML = `${fahrD6Low}°F`;
 }
 
 function celciusConversion() {
@@ -408,6 +483,18 @@ function celciusConversion() {
   nowHigh.innerHTML = `H: ${celciusHigh}°C`;
   nowLow.innerHTML = `L: ${celciusLow}°C`;
   nowWind.innerHTML = `${metricWind} km/h`;
+  dayOneHigh.innerHTML = `${celciusD1High}°C`;
+  dayOneLow.innerHTML = `${celciusD1Low}°C`;
+  dayTwoHigh.innerHTML = `${celciusD2High}°C`;
+  dayTwoLow.innerHTML = `${celciusD2Low}°C`;
+  dayThreeHigh.innerHTML = `${celciusD3High}°C`;
+  dayThreeLow.innerHTML = `${celciusD3Low}°C`;
+  dayFourHigh.innerHTML = `${celciusD4High}°C`;
+  dayFourLow.innerHTML = `${celciusD4Low}°C`;
+  dayFiveHigh.innerHTML = `${celciusD5High}°C`;
+  dayFiveLow.innerHTML = `${celciusD5Low}°C`;
+  daySixHigh.innerHTML = `${celciusD6High}°C`;
+  daySixLow.innerHTML = `${celciusD6Low}°C`;
 }
 
 celciusButton.addEventListener("click", celciusConversion);
