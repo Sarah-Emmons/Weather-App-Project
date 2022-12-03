@@ -65,6 +65,8 @@ input {
   background-origin: content-box;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #d2d2d2;
+  border-radius: 5px;
   margin: 10px;
   padding: 2px;
 }
