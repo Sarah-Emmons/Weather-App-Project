@@ -70,6 +70,8 @@ let dayFourHigh = document.querySelector("#day-four-temp-high");
 let dayFourLow = document.querySelector("#day-four-temp-low");
 let dayFiveHigh = document.querySelector("#day-five-temp-high");
 let dayFiveLow = document.querySelector("#day-five-temp-low");
+let daySixHigh = document.querySelector("#day-six-temp-high");
+let daySixLow = document.querySelector("#day-six-temp-low");
 let celciusButton = document.querySelector("#celcius");
 let fahrenheitButton = document.querySelector("#fahrenheit");
 let nowIcon = document.querySelector("#current-icon");
@@ -117,13 +119,45 @@ function initialTemperature(response) {
   nowHumidity.innerHTML = `${initialHumidity}%`;
   nowIcon.setAttribute("src", initialIcon);
 }
+function initialForecast(response) {
+  console.log(response);
+  let d1High = Math.round(response.data.daily[1].temperature.maximum);
+  let d1Low = Math.round(response.data.daily[1].temperature.minimum);
+  let d2High = Math.round(response.data.daily[2].temperature.maximum);
+  let d2Low = Math.round(response.data.daily[2].temperature.minimum);
+  let d3High = Math.round(response.data.daily[3].temperature.maximum);
+  let d3Low = Math.round(response.data.daily[3].temperature.minimum);
+  let d4High = Math.round(response.data.daily[4].temperature.maximum);
+  let d4Low = Math.round(response.data.daily[4].temperature.minimum);
+  let d5High = Math.round(response.data.daily[5].temperature.maximum);
+  let d5Low = Math.round(response.data.daily[5].temperature.minimum);
+  let d6High = Math.round(response.data.daily[6].temperature.maximum);
+  let d6Low = Math.round(response.data.daily[6].temperature.minimum);
+
+  dayOneHigh.innerHTML = `${d1High}°C`;
+  dayOneLow.innerHTML = `${d1Low}°C`;
+  dayTwoHigh.innerHTML = `${d2High}°C`;
+  dayTwoLow.innerHTML = `${d2Low}°C`;
+  dayThreeHigh.innerHTML = `${d3High}°C`;
+  dayThreeLow.innerHTML = `${d3Low}°C`;
+  dayFourHigh.innerHTML = `${d4High}°C`;
+  dayFourLow.innerHTML = `${d4Low}°C`;
+  dayFiveHigh.innerHTML = `${d5High}°C`;
+  dayFiveLow.innerHTML = `${d5Low}°C`;
+  daySixHigh.innerHTML = `${d6High}°C`;
+  daySixLow.innerHTML = `${d6Low}°C`;
+}
 
 let apiKey = "7583101ef9342f2512018b4f45d651e6";
 let units = "metric";
 let city = "Edmonton";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+let forecastKey = "3a40dbd3f099ea4205eb9b6fb6f44ot3";
+let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${forecastKey}`;
 axios.get(apiUrl).then(initialTemperature);
+axios.get(forecastUrl).then(initialForecast);
 //console.log(apiUrl);
+//console.log(forecastUrl);
 
 //Search Bar Functionality
 function searchBar(event) {
@@ -186,6 +220,7 @@ function searchBar(event) {
   }
   //console.log(apiUrl);
 }
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchBar);
 
