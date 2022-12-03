@@ -16,6 +16,7 @@ let dayAfterTomorrow = days[now.getDay() + 2];
 let threeFromNow = days[now.getDay() + 3];
 let fourFromNow = days[now.getDay() + 4];
 let fiveFromNow = days[now.getDay() + 5];
+let sixFromNow = days[now.getDay() + 6];
 
 if (tomorrow === undefined) {
   tomorrow = days[now.getDay() + 1 - 7];
@@ -32,6 +33,9 @@ if (fourFromNow === undefined) {
 if (fiveFromNow === undefined) {
   fiveFromNow = days[now.getDay() + 5 - 7];
 }
+if (sixFromNow === undefined) {
+  sixFromNow = days[now.getDay() + 6 - 7];
+}
 
 let todayDay = document.querySelector("#today-day");
 let dayOne = document.querySelector(".day1");
@@ -39,12 +43,14 @@ let dayTwo = document.querySelector(".day2");
 let dayThree = document.querySelector(".day3");
 let dayFour = document.querySelector(".day4");
 let dayFive = document.querySelector(".day5");
+let daySix = document.querySelector(".day6");
 todayDay.innerHTML = day;
 dayOne.innerHTML = tomorrow;
 dayTwo.innerHTML = dayAfterTomorrow;
 dayThree.innerHTML = threeFromNow;
 dayFour.innerHTML = fourFromNow;
 dayFive.innerHTML = fiveFromNow;
+daySix.innerHTML = sixFromNow;
 
 //generic definitions
 let nowTemp = document.querySelector("#today-temp");
