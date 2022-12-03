@@ -227,29 +227,41 @@ function searchBar(event) {
   function searchForecast(response) {
     let d1High = Math.round(response.data.daily[1].temperature.maximum);
     let d1Low = Math.round(response.data.daily[1].temperature.minimum);
+    let d1Icon = response.data.daily[1].condition.icon_url;
     let d2High = Math.round(response.data.daily[2].temperature.maximum);
     let d2Low = Math.round(response.data.daily[2].temperature.minimum);
+    let d2Icon = response.data.daily[2].condition.icon_url;
     let d3High = Math.round(response.data.daily[3].temperature.maximum);
     let d3Low = Math.round(response.data.daily[3].temperature.minimum);
+    let d3Icon = response.data.daily[3].condition.icon_url;
     let d4High = Math.round(response.data.daily[4].temperature.maximum);
     let d4Low = Math.round(response.data.daily[4].temperature.minimum);
+    let d4Icon = response.data.daily[4].condition.icon_url;
     let d5High = Math.round(response.data.daily[5].temperature.maximum);
     let d5Low = Math.round(response.data.daily[5].temperature.minimum);
+    let d5Icon = response.data.daily[5].condition.icon_url;
     let d6High = Math.round(response.data.daily[6].temperature.maximum);
     let d6Low = Math.round(response.data.daily[6].temperature.minimum);
+    let d6Icon = response.data.daily[6].condition.icon_url;
 
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
+    dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
     dayTwoHigh.innerHTML = `${d2High}°C`;
     dayTwoLow.innerHTML = `${d2Low}°C`;
+    dayTwoIcon.setAttribute("style", `background-image: url(${d2Icon})`);
     dayThreeHigh.innerHTML = `${d3High}°C`;
     dayThreeLow.innerHTML = `${d3Low}°C`;
+    dayThreeIcon.setAttribute("style", `background-image: url(${d3Icon})`);
     dayFourHigh.innerHTML = `${d4High}°C`;
     dayFourLow.innerHTML = `${d4Low}°C`;
+    dayFourIcon.setAttribute("style", `background-image: url(${d4Icon})`);
     dayFiveHigh.innerHTML = `${d5High}°C`;
     dayFiveLow.innerHTML = `${d5Low}°C`;
+    dayFiveIcon.setAttribute("style", `background-image: url(${d5Icon})`);
     daySixHigh.innerHTML = `${d6High}°C`;
     daySixLow.innerHTML = `${d6Low}°C`;
+    daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
   }
 
   event.preventDefault();
@@ -322,29 +334,41 @@ function cityClick() {
   function showForecast(response) {
     let d1High = Math.round(response.data.daily[1].temperature.maximum);
     let d1Low = Math.round(response.data.daily[1].temperature.minimum);
+    let d1Icon = response.data.daily[1].condition.icon_url;
     let d2High = Math.round(response.data.daily[2].temperature.maximum);
     let d2Low = Math.round(response.data.daily[2].temperature.minimum);
+    let d2Icon = response.data.daily[2].condition.icon_url;
     let d3High = Math.round(response.data.daily[3].temperature.maximum);
     let d3Low = Math.round(response.data.daily[3].temperature.minimum);
+    let d3Icon = response.data.daily[3].condition.icon_url;
     let d4High = Math.round(response.data.daily[4].temperature.maximum);
     let d4Low = Math.round(response.data.daily[4].temperature.minimum);
+    let d4Icon = response.data.daily[4].condition.icon_url;
     let d5High = Math.round(response.data.daily[5].temperature.maximum);
     let d5Low = Math.round(response.data.daily[5].temperature.minimum);
+    let d5Icon = response.data.daily[5].condition.icon_url;
     let d6High = Math.round(response.data.daily[6].temperature.maximum);
     let d6Low = Math.round(response.data.daily[6].temperature.minimum);
+    let d6Icon = response.data.daily[6].condition.icon_url;
 
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
+    dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
     dayTwoHigh.innerHTML = `${d2High}°C`;
     dayTwoLow.innerHTML = `${d2Low}°C`;
+    dayTwoIcon.setAttribute("style", `background-image: url(${d2Icon})`);
     dayThreeHigh.innerHTML = `${d3High}°C`;
     dayThreeLow.innerHTML = `${d3Low}°C`;
+    dayThreeIcon.setAttribute("style", `background-image: url(${d3Icon})`);
     dayFourHigh.innerHTML = `${d4High}°C`;
     dayFourLow.innerHTML = `${d4Low}°C`;
+    dayFourIcon.setAttribute("style", `background-image: url(${d4Icon})`);
     dayFiveHigh.innerHTML = `${d5High}°C`;
     dayFiveLow.innerHTML = `${d5Low}°C`;
+    dayFiveIcon.setAttribute("style", `background-image: url(${d5Icon})`);
     daySixHigh.innerHTML = `${d6High}°C`;
     daySixLow.innerHTML = `${d6Low}°C`;
+    daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
   }
 
   function showPosition(position) {
