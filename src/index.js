@@ -83,50 +83,18 @@ let fahrenheitButton = document.querySelector("#fahrenheit");
 let nowIcon = document.querySelector("#current-icon");
 
 //initial page load
-function initialTemperature(response) {
-  //console.log(response);
-  let city = response.data.name;
-  let country = response.data.sys.country;
-  let h1 = document.querySelector(".city-header");
-  let initalTemp = Math.round(response.data.main.temp);
-  let initialHigh = Math.round(response.data.main.temp_max);
-  let initialLow = Math.round(response.data.main.temp_min);
-  let initialCondition = response.data.weather[0].description;
-  let initialWind = Math.round(response.data.wind.speed);
-  let initialHumidity = response.data.main.humidity;
-  let initialTimestamp = new Date(response.data.dt * 1000);
-  let initialIconElement = response.data.weather[0].icon;
-  let initialIcon = `http://openweathermap.org/img/wn/${initialIconElement}@2x.png`;
-
-  celciusTemp = Math.round(response.data.main.temp);
-  celciusHigh = Math.round(response.data.main.temp_max);
-  celciusLow = Math.round(response.data.main.temp_min);
-  metricWind = Math.round(response.data.wind.speed);
-
-  let hours = initialTimestamp.getHours();
-  let minutes = ("0" + initialTimestamp.getMinutes()).slice(-2);
-  if (hours > 12) {
-    hours = hours - 12;
-    todayTime.innerHTML = `${hours}:${minutes} pm`;
-  } else {
-    if (hours === 12) {
-      todayTime.innerHTML = `${hours}:${minutes} pm`;
-    } else {
-      todayTime.innerHTML = `${hours}:${minutes} am`;
-    }
-  }
-
-  h1.innerHTML = `${city}, ${country}`;
-  nowTemp.innerHTML = `${initalTemp}°C`;
-  nowHigh.innerHTML = `H: ${initialHigh}°C`;
-  nowLow.innerHTML = `L: ${initialLow}°C`;
-  nowCondition.innerHTML = initialCondition;
-  nowWind.innerHTML = `${initialWind} km/h`;
-  nowHumidity.innerHTML = `${initialHumidity}%`;
-  nowIcon.setAttribute("src", initialIcon);
-}
 function initialForecast(response) {
-  //console.log(response);
+  console.log(response);
+  let city = response.data.city;
+  let country = response.data.country;
+  let h1 = document.querySelector(".city-header");
+  let initalTemp = Math.round(response.data.daily[0].temperature.day);
+  let initialHigh = Math.round(response.data.daily[0].temperature.maximum);
+  let initialLow = Math.round(response.data.daily[0].temperature.minimum);
+  let initialCondition = response.data.daily[0].condition.description;
+  let initialWind = Math.round(response.data.daily[0].wind.speed);
+  let initialHumidity = Math.round(response.data.daily[0].temperature.humidity);
+  let initialIcon = response.data.daily[0].condition.icon_url;
   let d1High = Math.round(response.data.daily[1].temperature.maximum);
   let d1Low = Math.round(response.data.daily[1].temperature.minimum);
   let d1Icon = response.data.daily[1].condition.icon_url;
@@ -146,6 +114,10 @@ function initialForecast(response) {
   let d6Low = Math.round(response.data.daily[6].temperature.minimum);
   let d6Icon = response.data.daily[6].condition.icon_url;
 
+  celciusTemp = initalTemp;
+  celciusHigh = initialHigh;
+  celciusLow = initialLow;
+  metricWind = initialWind;
   celciusD1High = d1High;
   celciusD2High = d2High;
   celciusD3High = d3High;
@@ -159,6 +131,14 @@ function initialForecast(response) {
   celciusD5Low = d5Low;
   celciusD6Low = d6Low;
 
+  h1.innerHTML = `${city}, ${country}`;
+  nowTemp.innerHTML = `${initalTemp}°C`;
+  nowHigh.innerHTML = `H: ${initialHigh}°C`;
+  nowLow.innerHTML = `L: ${initialLow}°C`;
+  nowCondition.innerHTML = initialCondition;
+  nowWind.innerHTML = `${initialWind} km/h`;
+  nowHumidity.innerHTML = `${initialHumidity}%`;
+  nowIcon.setAttribute("src", initialIcon);
   dayOneHigh.innerHTML = `${d1High}°C`;
   dayOneLow.innerHTML = `${d1Low}°C`;
   dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
@@ -177,43 +157,11 @@ function initialForecast(response) {
   daySixHigh.innerHTML = `${d6High}°C`;
   daySixLow.innerHTML = `${d6Low}°C`;
   daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
-}
 
-let apiKey = "7583101ef9342f2512018b4f45d651e6";
-let units = "metric";
-let city = "Edmonton";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-let forecastKey = "3a40dbd3f099ea4205eb9b6fb6f44ot3";
-let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${forecastKey}`;
-axios.get(apiUrl).then(initialTemperature);
-axios.get(forecastUrl).then(initialForecast);
-//console.log(apiUrl);
-//console.log(forecastUrl);
-
-//Search Bar Functionality
-function searchBar(event) {
-  function showTemp(response) {
-    //console.log(response);
-    let searchLocationTemp = Math.round(response.data.main.temp);
-    let searchLocationHigh = Math.round(response.data.main.temp_max);
-    let searchLocationLow = Math.round(response.data.main.temp_min);
-    //let currentLocationPrecipitation = Math.round(response.data.precipitation.value);
-    let searchLocationHumidity = Math.round(response.data.main.humidity);
-    let searchLocationWind = Math.round(response.data.wind.speed);
-    let searchCity = response.data.name;
-    let searchCountry = response.data.sys.country;
-    let searchCondition = response.data.weather[0].description;
-    let nowTimestamp = new Date(response.data.dt * 1000);
-    let searchIconElement = response.data.weather[0].icon;
-    let searchIcon = `http://openweathermap.org/img/wn/${searchIconElement}@2x.png`;
-
-    celciusTemp = Math.round(response.data.main.temp);
-    celciusHigh = Math.round(response.data.main.temp_max);
-    celciusLow = Math.round(response.data.main.temp_min);
-    metricWind = Math.round(response.data.wind.speed);
-
-    let hours = nowTimestamp.getHours();
-    let minutes = ("0" + nowTimestamp.getMinutes()).slice(-2);
+  function timestamp(response) {
+    let time = new Date(response.data.time * 1000);
+    let hours = time.getHours();
+    let minutes = ("0" + time.getMinutes()).slice(-2);
     if (hours > 12) {
       hours = hours - 12;
       todayTime.innerHTML = `${hours}:${minutes} pm`;
@@ -224,20 +172,37 @@ function searchBar(event) {
         todayTime.innerHTML = `${hours}:${minutes} am`;
       }
     }
-
-    let h1 = document.querySelector("h1");
-    h1.innerHTML = `${searchCity}, ${searchCountry}`;
-    nowTemp.innerHTML = `${searchLocationTemp}°C`;
-    nowHigh.innerHTML = `H: ${searchLocationHigh}°C`;
-    nowLow.innerHTML = `L: ${searchLocationLow}°C`;
-    //nowPrecipitation = `${currentLocationPrecipitation}%`;
-    nowHumidity.innerHTML = `${searchLocationHumidity}%`;
-    nowWind.innerHTML = `${searchLocationWind} km/h`;
-    nowCondition.innerHTML = searchCondition;
-    nowIcon.setAttribute("src", searchIcon);
   }
 
+  let timeUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${forecastKey}`;
+  axios.get(timeUrl).then(timestamp);
+}
+
+let units = "metric";
+let city = "Edmonton";
+let forecastKey = "3a40dbd3f099ea4205eb9b6fb6f44ot3";
+let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${forecastKey}`;
+axios.get(forecastUrl).then(initialForecast);
+//console.log(forecastUrl);
+
+//Search Bar Functionality
+function searchBar(event) {
   function searchForecast(response) {
+    let searchLocationTemp = Math.round(response.data.daily[0].temperature.day);
+    let searchLocationHigh = Math.round(
+      response.data.daily[0].temperature.maximum
+    );
+    let searchLocationLow = Math.round(
+      response.data.daily[0].temperature.minimum
+    );
+    let searchLocationHumidity = Math.round(
+      response.data.daily[0].temperature.humidity
+    );
+    let searchLocationWind = Math.round(response.data.daily[0].wind.speed);
+    let searchCity = response.data.city;
+    let searchCountry = response.data.country;
+    let searchCondition = response.data.daily[0].condition.description;
+    let searchIcon = response.data.daily[0].condition.icon_url;
     let d1High = Math.round(response.data.daily[1].temperature.maximum);
     let d1Low = Math.round(response.data.daily[1].temperature.minimum);
     let d1Icon = response.data.daily[1].condition.icon_url;
@@ -257,6 +222,10 @@ function searchBar(event) {
     let d6Low = Math.round(response.data.daily[6].temperature.minimum);
     let d6Icon = response.data.daily[6].condition.icon_url;
 
+    celciusTemp = searchLocationTemp;
+    celciusHigh = searchLocationHigh;
+    celciusLow = searchLocationLow;
+    metricWind = searchLocationWind;
     celciusD1High = d1High;
     celciusD2High = d2High;
     celciusD3High = d3High;
@@ -270,6 +239,15 @@ function searchBar(event) {
     celciusD5Low = d5Low;
     celciusD6Low = d6Low;
 
+    let h1 = document.querySelector("h1");
+    h1.innerHTML = `${searchCity}, ${searchCountry}`;
+    nowTemp.innerHTML = `${searchLocationTemp}°C`;
+    nowHigh.innerHTML = `H: ${searchLocationHigh}°C`;
+    nowLow.innerHTML = `L: ${searchLocationLow}°C`;
+    nowHumidity.innerHTML = `${searchLocationHumidity}%`;
+    nowWind.innerHTML = `${searchLocationWind} km/h`;
+    nowCondition.innerHTML = searchCondition;
+    nowIcon.setAttribute("src", searchIcon);
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
     dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
@@ -288,15 +266,31 @@ function searchBar(event) {
     daySixHigh.innerHTML = `${d6High}°C`;
     daySixLow.innerHTML = `${d6Low}°C`;
     daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
+
+    function timestamp(response) {
+      let time = new Date(response.data.time * 1000);
+      let hours = time.getHours();
+      let minutes = ("0" + time.getMinutes()).slice(-2);
+      if (hours > 12) {
+        hours = hours - 12;
+        todayTime.innerHTML = `${hours}:${minutes} pm`;
+      } else {
+        if (hours === 12) {
+          todayTime.innerHTML = `${hours}:${minutes} pm`;
+        } else {
+          todayTime.innerHTML = `${hours}:${minutes} am`;
+        }
+      }
+    }
+
+    let timeUrl = `https://api.shecodes.io/weather/v1/current?query=${searchCity}&key=${forecastKey}`;
+    axios.get(timeUrl).then(timestamp);
   }
 
   event.preventDefault();
   let searchInput = document.querySelector("#city-search");
-  let searchUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&appid=${apiKey}&units=${units}`;
   let searchForecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${searchInput.value}&key=${forecastKey}`;
   let h1 = document.querySelector("h1");
-  //console.log(searchInput);
-  axios.get(searchUrl).then(showTemp);
   axios.get(searchForecastUrl).then(searchForecast);
   //console.log(searchForecastUrl);
 
@@ -314,50 +308,23 @@ form.addEventListener("submit", searchBar);
 
 //Current City Button
 function cityClick() {
-  function showTemp(response) {
-    //console.log(response);
-    let currentLocationTemp = Math.round(response.data.main.temp);
-    let currentLocationHigh = Math.round(response.data.main.temp_max);
-    let currentLocationLow = Math.round(response.data.main.temp_min);
-    //let currentLocationPrecipitation = Math.round(response.data.precipitation.value);
-    let currentLocationHumidity = Math.round(response.data.main.humidity);
-    let currentLocationWind = Math.round(response.data.wind.speed);
-    let currentCity = response.data.name;
-    let currentCountry = response.data.sys.country;
-    let currentCondition = response.data.weather[0].description;
-    let h1 = document.querySelector("h1");
-    h1.innerHTML = `${currentCity}, ${currentCountry}`;
-    nowTemp.innerHTML = `${currentLocationTemp}°C`;
-    nowHigh.innerHTML = `H: ${currentLocationHigh}°C`;
-    nowLow.innerHTML = `L: ${currentLocationLow}°C`;
-    //nowPrecipitation = `${currentLocationPrecipitation}%`;
-    nowHumidity.innerHTML = `${currentLocationHumidity}%`;
-    nowWind.innerHTML = `${currentLocationWind} km/h`;
-    nowCondition.innerHTML = currentCondition;
-    let currentTimestamp = new Date(response.data.dt * 1000);
-    let currentIconElement = response.data.weather[0].icon;
-    let currentIcon = `http://openweathermap.org/img/wn/${currentIconElement}@2x.png`;
-    nowIcon.setAttribute("src", currentIcon);
-
-    celciusTemp = Math.round(response.data.main.temp);
-    celciusHigh = Math.round(response.data.main.temp_max);
-    celciusLow = Math.round(response.data.main.temp_min);
-    metricWind = Math.round(response.data.wind.speed);
-
-    let hours = currentTimestamp.getHours();
-    let minutes = ("0" + currentTimestamp.getMinutes()).slice(-2);
-    if (hours > 12) {
-      hours = hours - 12;
-      todayTime.innerHTML = `${hours}:${minutes} pm`;
-    } else {
-      if (hours === 12) {
-        todayTime.innerHTML = `${hours}:${minutes} pm`;
-      } else {
-        todayTime.innerHTML = `${hours}:${minutes} am`;
-      }
-    }
-  }
   function showForecast(response) {
+    let currentLocationTemp = Math.round(
+      response.data.daily[0].temperature.day
+    );
+    let currentLocationHigh = Math.round(
+      response.data.daily[0].temperature.maximum
+    );
+    let currentLocationLow = Math.round(
+      response.data.daily[0].temperature.minimum
+    );
+    let currentLocationHumidity = Math.round(
+      response.data.daily[0].temperature.humidity
+    );
+    let currentLocationWind = Math.round(response.data.daily[0].wind.speed);
+    let currentCity = response.data.city;
+    let currentCountry = response.data.country;
+    let currentCondition = response.data.daily[0].condition.description;
     let d1High = Math.round(response.data.daily[1].temperature.maximum);
     let d1Low = Math.round(response.data.daily[1].temperature.minimum);
     let d1Icon = response.data.daily[1].condition.icon_url;
@@ -377,6 +344,10 @@ function cityClick() {
     let d6Low = Math.round(response.data.daily[6].temperature.minimum);
     let d6Icon = response.data.daily[6].condition.icon_url;
 
+    celciusTemp = currentLocationTemp;
+    celciusHigh = currentLocationHigh;
+    celciusLow = currentLocationLow;
+    metricWind = currentLocationWind;
     celciusD1High = d1High;
     celciusD2High = d2High;
     celciusD3High = d3High;
@@ -390,6 +361,16 @@ function cityClick() {
     celciusD5Low = d5Low;
     celciusD6Low = d6Low;
 
+    let h1 = document.querySelector("h1");
+    h1.innerHTML = `${currentCity}, ${currentCountry}`;
+    nowTemp.innerHTML = `${currentLocationTemp}°C`;
+    nowHigh.innerHTML = `H: ${currentLocationHigh}°C`;
+    nowLow.innerHTML = `L: ${currentLocationLow}°C`;
+    nowHumidity.innerHTML = `${currentLocationHumidity}%`;
+    nowWind.innerHTML = `${currentLocationWind} km/h`;
+    nowCondition.innerHTML = currentCondition;
+    let currentIcon = response.data.daily[0].condition.icon_url;
+    nowIcon.setAttribute("src", currentIcon);
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
     dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
@@ -408,14 +389,31 @@ function cityClick() {
     daySixHigh.innerHTML = `${d6High}°C`;
     daySixLow.innerHTML = `${d6Low}°C`;
     daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
+
+    function timestamp(response) {
+      let time = new Date(response.data.time * 1000);
+      let hours = time.getHours();
+      let minutes = ("0" + time.getMinutes()).slice(-2);
+      if (hours > 12) {
+        hours = hours - 12;
+        todayTime.innerHTML = `${hours}:${minutes} pm`;
+      } else {
+        if (hours === 12) {
+          todayTime.innerHTML = `${hours}:${minutes} pm`;
+        } else {
+          todayTime.innerHTML = `${hours}:${minutes} am`;
+        }
+      }
+    }
+
+    let timeUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${forecastKey}`;
+    axios.get(timeUrl).then(timestamp);
   }
 
   function showPosition(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
-    let currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
     let currentForecastUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${forecastKey}`;
-    axios.get(currentUrl).then(showTemp);
     axios.get(currentForecastUrl).then(showForecast);
   }
   navigator.geolocation.getCurrentPosition(showPosition);
