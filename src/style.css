@@ -14,9 +14,6 @@ h2 {
   padding: 2px;
   margin: 5px;
 }
-h5 {
-  margin-top: 125px;
-}
 form {
   text-align: center;
   margin: 10px;
@@ -117,4 +114,8 @@ input {
   margin: 0 0 5px 25%;
   border-radius: 5px;
   text-align: center;
+}
+.icons {
+  display: block;
+  margin: 0 auto;
 }

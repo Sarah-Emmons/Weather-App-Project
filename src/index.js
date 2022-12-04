@@ -62,29 +62,28 @@ let nowWind = document.querySelector("#wind");
 let nowCondition = document.querySelector("#weather-condition");
 let dayOneHigh = document.querySelector("#day-one-temp-high");
 let dayOneLow = document.querySelector("#day-one-temp-low");
-let dayOneIcon = document.querySelector(".card-body-1");
+let dayOneIcon = document.querySelector("#day-one-icon");
 let dayTwoHigh = document.querySelector("#day-two-temp-high");
 let dayTwoLow = document.querySelector("#day-two-temp-low");
-let dayTwoIcon = document.querySelector(".card-body-2");
+let dayTwoIcon = document.querySelector("#day-two-icon");
 let dayThreeHigh = document.querySelector("#day-three-temp-high");
 let dayThreeLow = document.querySelector("#day-three-temp-low");
-let dayThreeIcon = document.querySelector(".card-body-3");
+let dayThreeIcon = document.querySelector("#day-three-icon");
 let dayFourHigh = document.querySelector("#day-four-temp-high");
 let dayFourLow = document.querySelector("#day-four-temp-low");
-let dayFourIcon = document.querySelector(".card-body-4");
+let dayFourIcon = document.querySelector("#day-four-icon");
 let dayFiveHigh = document.querySelector("#day-five-temp-high");
 let dayFiveLow = document.querySelector("#day-five-temp-low");
-let dayFiveIcon = document.querySelector(".card-body-5");
+let dayFiveIcon = document.querySelector("#day-five-icon");
 let daySixHigh = document.querySelector("#day-six-temp-high");
 let daySixLow = document.querySelector("#day-six-temp-low");
-let daySixIcon = document.querySelector(".card-body-6");
+let daySixIcon = document.querySelector("#day-six-icon");
 let celciusButton = document.querySelector("#celcius");
 let fahrenheitButton = document.querySelector("#fahrenheit");
 let nowIcon = document.querySelector("#current-icon");
 
 //initial page load
 function initialForecast(response) {
-  console.log(response);
   let city = response.data.city;
   let country = response.data.country;
   let h1 = document.querySelector(".city-header");
@@ -141,22 +140,22 @@ function initialForecast(response) {
   nowIcon.setAttribute("src", initialIcon);
   dayOneHigh.innerHTML = `${d1High}°C`;
   dayOneLow.innerHTML = `${d1Low}°C`;
-  dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
+  dayOneIcon.setAttribute("src", d1Icon);
   dayTwoHigh.innerHTML = `${d2High}°C`;
   dayTwoLow.innerHTML = `${d2Low}°C`;
-  dayTwoIcon.setAttribute("style", `background-image: url(${d2Icon})`);
+  dayTwoIcon.setAttribute("src", d2Icon);
   dayThreeHigh.innerHTML = `${d3High}°C`;
   dayThreeLow.innerHTML = `${d3Low}°C`;
-  dayThreeIcon.setAttribute("style", `background-image: url(${d3Icon})`);
+  dayThreeIcon.setAttribute("src", d3Icon);
   dayFourHigh.innerHTML = `${d4High}°C`;
   dayFourLow.innerHTML = `${d4Low}°C`;
-  dayFourIcon.setAttribute("style", `background-image: url(${d4Icon})`);
+  dayFourIcon.setAttribute("src", d4Icon);
   dayFiveHigh.innerHTML = `${d5High}°C`;
   dayFiveLow.innerHTML = `${d5Low}°C`;
-  dayFiveIcon.setAttribute("style", `background-image: url(${d5Icon})`);
+  dayFiveIcon.setAttribute("src", d5Icon);
   daySixHigh.innerHTML = `${d6High}°C`;
   daySixLow.innerHTML = `${d6Low}°C`;
-  daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
+  daySixIcon.setAttribute("src", d6Icon);
 
   function timestamp(response) {
     let time = new Date(response.data.time * 1000);
@@ -183,7 +182,6 @@ let city = "Edmonton";
 let forecastKey = "3a40dbd3f099ea4205eb9b6fb6f44ot3";
 let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${forecastKey}`;
 axios.get(forecastUrl).then(initialForecast);
-//console.log(forecastUrl);
 
 //Search Bar Functionality
 function searchBar(event) {
@@ -250,22 +248,22 @@ function searchBar(event) {
     nowIcon.setAttribute("src", searchIcon);
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
-    dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
+    dayOneIcon.setAttribute("src", d1Icon);
     dayTwoHigh.innerHTML = `${d2High}°C`;
     dayTwoLow.innerHTML = `${d2Low}°C`;
-    dayTwoIcon.setAttribute("style", `background-image: url(${d2Icon})`);
+    dayTwoIcon.setAttribute("src", d2Icon);
     dayThreeHigh.innerHTML = `${d3High}°C`;
     dayThreeLow.innerHTML = `${d3Low}°C`;
-    dayThreeIcon.setAttribute("style", `background-image: url(${d3Icon})`);
+    dayThreeIcon.setAttribute("src", d3Icon);
     dayFourHigh.innerHTML = `${d4High}°C`;
     dayFourLow.innerHTML = `${d4Low}°C`;
-    dayFourIcon.setAttribute("style", `background-image: url(${d4Icon})`);
+    dayFourIcon.setAttribute("src", d4Icon);
     dayFiveHigh.innerHTML = `${d5High}°C`;
     dayFiveLow.innerHTML = `${d5Low}°C`;
-    dayFiveIcon.setAttribute("style", `background-image: url(${d5Icon})`);
+    dayFiveIcon.setAttribute("src", d5Icon);
     daySixHigh.innerHTML = `${d6High}°C`;
     daySixLow.innerHTML = `${d6Low}°C`;
-    daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
+    daySixIcon.setAttribute("src", d6Icon);
 
     function timestamp(response) {
       let time = new Date(response.data.time * 1000);
@@ -292,7 +290,6 @@ function searchBar(event) {
   let searchForecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${searchInput.value}&key=${forecastKey}`;
   let h1 = document.querySelector("h1");
   axios.get(searchForecastUrl).then(searchForecast);
-  //console.log(searchForecastUrl);
 
   if (searchInput.value) {
     h1.innerHTML = searchInput.value;
@@ -300,7 +297,6 @@ function searchBar(event) {
     h1.innerHTML = null;
     alert("Please enter a city.");
   }
-  //console.log(apiUrl);
 }
 
 let form = document.querySelector("#search-form");
@@ -373,22 +369,22 @@ function cityClick() {
     nowIcon.setAttribute("src", currentIcon);
     dayOneHigh.innerHTML = `${d1High}°C`;
     dayOneLow.innerHTML = `${d1Low}°C`;
-    dayOneIcon.setAttribute("style", `background-image: url(${d1Icon})`);
+    dayOneIcon.setAttribute("src", d1Icon);
     dayTwoHigh.innerHTML = `${d2High}°C`;
     dayTwoLow.innerHTML = `${d2Low}°C`;
-    dayTwoIcon.setAttribute("style", `background-image: url(${d2Icon})`);
+    dayTwoIcon.setAttribute("src", d2Icon);
     dayThreeHigh.innerHTML = `${d3High}°C`;
     dayThreeLow.innerHTML = `${d3Low}°C`;
-    dayThreeIcon.setAttribute("style", `background-image: url(${d3Icon})`);
+    dayThreeIcon.setAttribute("src", d3Icon);
     dayFourHigh.innerHTML = `${d4High}°C`;
     dayFourLow.innerHTML = `${d4Low}°C`;
-    dayFourIcon.setAttribute("style", `background-image: url(${d4Icon})`);
+    dayFourIcon.setAttribute("src", d4Icon);
     dayFiveHigh.innerHTML = `${d5High}°C`;
     dayFiveLow.innerHTML = `${d5Low}°C`;
-    dayFiveIcon.setAttribute("style", `background-image: url(${d5Icon})`);
+    dayFiveIcon.setAttribute("src", d5Icon);
     daySixHigh.innerHTML = `${d6High}°C`;
     daySixLow.innerHTML = `${d6Low}°C`;
-    daySixIcon.setAttribute("style", `background-image: url(${d6Icon})`);
+    daySixIcon.setAttribute("src", d6Icon);
 
     function timestamp(response) {
       let time = new Date(response.data.time * 1000);
@@ -457,7 +453,6 @@ function fahrenheitConversion() {
   let fahrD4Low = Math.round(celciusD4Low * (9 / 5) + 32);
   let fahrD5Low = Math.round(celciusD5Low * (9 / 5) + 32);
   let fahrD6Low = Math.round(celciusD6Low * (9 / 5) + 32);
-  //console.log(fahrenheitTemp);
   nowTemp.innerHTML = `${fahrenheitTemp}°F`;
   nowHigh.innerHTML = `H: ${fahrenheitHigh}°F`;
   nowLow.innerHTML = `L: ${fahrenheithLow}°F`;
